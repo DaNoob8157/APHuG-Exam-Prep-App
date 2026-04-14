@@ -8,17 +8,19 @@
 import SwiftUI
 
 enum SidebarItem: String, Hashable, CaseIterable {
-    case studyPlan    = "Study Plan"
-    case session      = "Today's Session"
+    case studyPlan     = "Study Plan"
+    case customPlan    = "My Plan"
+    case session       = "Today's Session"
     case practiceExams = "Practice Exams"
-    case cramMode     = "Cram Mode"
-    case music        = "Music"
-    case resources    = "Resources"
-    case textbook     = "Textbook"
+    case cramMode      = "Cram Mode"
+    case music         = "Music"
+    case resources     = "Resources"
+    case textbook      = "Textbook"
 
     var icon: String {
         switch self {
         case .studyPlan:     return "calendar"
+        case .customPlan:    return "calendar.badge.plus"
         case .session:       return "timer"
         case .practiceExams: return "doc.richtext.fill"
         case .cramMode:      return "flame.fill"
@@ -36,6 +38,10 @@ struct ContentView: View {
     @State private var studyDays: [StudyDay] = StudyDay.loadFromCSV()
     @State private var selectedDay: StudyDay?
     @State private var refreshID = UUID()
+
+    // Custom plan
+    @State private var customDays: [CustomStudyDay] = CustomStudyDay.load()
+    @State private var selectedCustomDay: CustomStudyDay?
 
     // Session (clock-in timer)
     @State private var allTasks: [StudyTask] = StudyTask.loadAll()

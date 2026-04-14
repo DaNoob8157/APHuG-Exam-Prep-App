@@ -9,11 +9,13 @@ import SwiftUI
 
 enum SidebarItem: String, Hashable, CaseIterable {
     case studyPlan = "Study Plan"
+    case resources = "Resources"
     case textbook = "Textbook"
 
     var icon: String {
         switch self {
         case .studyPlan: return "calendar"
+        case .resources: return "link"
         case .textbook: return "book.fill"
         }
     }
@@ -39,6 +41,8 @@ struct ContentView: View {
             case .studyPlan:
                 StudyPlanView(studyDays: $studyDays, selectedDay: $selectedDay)
                     .id(refreshID)
+            case .resources:
+                ResourcesView()
             case .textbook:
                 TextbookView()
             case nil:

@@ -86,6 +86,41 @@ struct DayDetailView: View {
                         .foregroundStyle(.secondary)
                 }
                 .padding(.top, 8)
+
+                // Unit-specific resource links
+                let unitResources = StudyResource.unitResources(for: day.unitFocus)
+                if !unitResources.isEmpty {
+                    Divider()
+                        .padding(.vertical, 4)
+
+                    VStack(alignment: .leading, spacing: 10) {
+                        Label("Resources for \(day.unitFocus)", systemImage: "link")
+                            .font(.headline)
+
+                        ForEach(unitResources) { resource in
+                            Link(destination: resource.url) {
+                                HStack(spacing: 10) {
+                                    Image(systemName: "arrow.up.right.square.fill")
+                                        .foregroundStyle(.blue)
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(resource.title)
+                                            .font(.body.weight(.medium))
+                                            .foregroundStyle(.primary)
+                                        Text(resource.description)
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                            .lineLimit(2)
+                                    }
+                                    Spacer()
+                                }
+                                .padding(10)
+                                .background(Color.blue.opacity(0.06))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
             }
             .padding(24)
         }

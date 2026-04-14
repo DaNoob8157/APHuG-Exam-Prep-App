@@ -43,7 +43,7 @@ struct TextbookView: View {
 }
 
 /// PDFView subclass that re-fits the page to the view bounds on every layout pass.
-private class AutoFitPDFView: PDFView {
+class AutoFitPDFView: PDFView {
     override func layout() {
         super.layout()
         guard document != nil else { return }

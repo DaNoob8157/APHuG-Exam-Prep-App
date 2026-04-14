@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Per-task study links
 
-private struct TaskLink {
+struct TaskLink {
     let label: String
     let url: URL
 }

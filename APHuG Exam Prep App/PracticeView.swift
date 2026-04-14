@@ -165,7 +165,7 @@ struct PracticeWelcomeView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Practice Exams")
                         .font(.largeTitle.bold())
-                    Text("Pick a resource to open it here, or tap ↗ to open in Safari.")
+                    Text("Pick a resource to open it here, or tap ↗ to open in Chrome.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
@@ -252,7 +252,7 @@ struct PracticeSourceCard: View {
                         .background(source.color.gradient)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                     Spacer()
-                    Button { NSWorkspace.shared.open(source.url) } label: {
+                    Button { openInChrome(source.url) } label: {
                         Image(systemName: "arrow.up.right.square").foregroundStyle(.secondary)
                     }.buttonStyle(.plain)
                 }

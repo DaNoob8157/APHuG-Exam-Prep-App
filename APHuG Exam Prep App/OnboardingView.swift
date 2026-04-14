@@ -84,7 +84,7 @@ private let onboardingPages: [OnboardingPage] = [
             .init(icon: "list.bullet", text: "Pick a source in the left list; the site loads in the right panel instantly."),
             .init(icon: "arrow.left", text: "Use the ← → toolbar buttons to navigate back and forward within the site."),
             .init(icon: "arrow.clockwise", text: "Tap the reload button (↻) if a page gets stuck."),
-            .init(icon: "arrow.up.right.square", text: "Tap "Open in Browser" in the toolbar to pop any site into Safari for a bigger view."),
+            .init(icon: "arrow.up.right.square", text: "Tap "Open in Chrome" in the toolbar to pop any site into Chrome for a bigger view."),
             .init(icon: "arrow.left.and.right.square", text: "Drag the divider between the source list and the browser to give the web view more space."),
             .init(icon: "tag", text: "Use the tag chips (MC, FRQ, Free, Official…) to filter sources by type."),
         ]
@@ -114,7 +114,7 @@ private let onboardingPages: [OnboardingPage] = [
         subtitle: "Pick a study station and Pandora loads right inside the app so you never break focus.",
         tips: [
             .init(icon: "music.note.list", text: "Choose any station from the list — Lo-Fi, Classical, Ambient, Jazz, and more."),
-            .init(icon: "arrow.up.right.square", text: "Tap "Open in Browser" to move Pandora to a separate window if you prefer."),
+            .init(icon: "arrow.up.right.square", text: "Tap "Open in Chrome" to move Pandora to a Chrome window if you prefer."),
             .init(icon: "arrow.left.and.right.square", text: "Drag the left edge of the Pandora pane to make more room for the player."),
             .init(icon: "speaker.wave.2", text: "Pandora requires a free account — sign up or log in once and it remembers you."),
         ]

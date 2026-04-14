@@ -159,11 +159,12 @@ struct MusicWelcomeView: View {
                 .padding(.horizontal, 48)
 
             Button {
-                NSWorkspace.shared.open(URL(string: "https://www.pandora.com/")!)
+                onBrowse()
             } label: {
-                Label("Open Pandora in Browser", systemImage: "arrow.up.right.square")
+                Label("Open Pandora in App", systemImage: "music.note.house.fill")
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.borderedProminent)
+            .tint(.pink)
 
             Spacer()
         }

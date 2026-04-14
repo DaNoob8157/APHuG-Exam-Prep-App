@@ -8,6 +8,19 @@
 import SwiftUI
 import WebKit
 import Combine
+import AppKit
+
+// MARK: - Chrome helper
+
+/// Opens `url` in Google Chrome. Falls back to the system default browser if Chrome is not installed.
+func openInChrome(_ url: URL) {
+    if let chromeURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.google.Chrome") {
+        let cfg = NSWorkspace.OpenConfiguration()
+        NSWorkspace.shared.open([url], withApplicationAt: chromeURL, configuration: cfg)
+    } else {
+        NSWorkspace.shared.open(url)
+    }
+}
 
 // MARK: - Navigator (shared state)
 
@@ -133,7 +146,7 @@ struct WebBrowserPane: View {
                             (icon: "arrow.clockwise",
                              text: "Tap ↻ if a page gets stuck loading."),
                             (icon: "arrow.up.right.square",
-                             text: "Tap "Open in Browser" to view the site in Safari in a larger window."),
+                             text: "Tap "Open in Chrome" to view the site in Google Chrome in a larger window."),
                             (icon: "hand.pinch",
                              text: "Use trackpad pinch-to-zoom inside the web view to adjust text size."),
                         ],
@@ -142,13 +155,13 @@ struct WebBrowserPane: View {
                 }
 
                 Button {
-                    NSWorkspace.shared.open(navigator.currentURL ?? homeURL)
+                    openInChrome(navigator.currentURL ?? homeURL)
                 } label: {
-                    Label("Open in Browser", systemImage: "arrow.up.right.square")
+                    Label("Open in Chrome", systemImage: "arrow.up.right.square")
                         .font(.caption)
                 }
                 .buttonStyle(.bordered)
-                .help("Open in default browser")
+                .help("Open in Google Chrome")
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
@@ -164,12 +177,12 @@ struct WebBrowserPane: View {
                 VStack(spacing: 16) {
                     Image(systemName: "wifi.slash").font(.system(size: 48)).foregroundStyle(.secondary)
                     Text("Can't load this page").font(.headline)
-                    Text("Check your internet connection, or open in Safari.")
+                    Text("Check your internet connection, or open in Chrome.")
                         .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     HStack(spacing: 12) {
                         Button("Try Again") { navigator.reload() }.buttonStyle(.bordered)
-                        Button("Open in Browser") {
-                            NSWorkspace.shared.open(homeURL)
+                        Button("Open in Chrome") {
+                            openInChrome(homeURL)
                         }.buttonStyle(.borderedProminent).tint(accentColor)
                     }
                 }

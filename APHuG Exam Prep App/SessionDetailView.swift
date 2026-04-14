@@ -105,6 +105,7 @@ struct SessionWelcomeView: View {
 
 struct ActiveSessionView: View {
     @ObservedObject var manager: SessionManager
+    @State private var showTip = false
 
     private var task: StudyTask? { manager.currentTask }
     private var accent: Color    { task?.taskType.color ?? .blue }
@@ -113,7 +114,7 @@ struct ActiveSessionView: View {
         ScrollView {
             VStack(spacing: 22) {
 
-                // Top bar: session elapsed + live clock
+                // Top bar: session elapsed + tip button + live clock
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Session")
@@ -128,6 +129,35 @@ struct ActiveSessionView: View {
                         Label("Paused", systemImage: "pause.circle.fill")
                             .font(.caption.weight(.medium))
                             .foregroundStyle(.orange)
+                    }
+                    Spacer()
+                    // Tip popover button
+                    Button { showTip.toggle() } label: {
+                        Image(systemName: "lightbulb")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                    .help("Timer tips")
+                    .popover(isPresented: $showTip, arrowEdge: .bottom) {
+                        TipPopover(
+                            title: "Timer Tips",
+                            tips: [
+                                (icon: "arrow.left.and.right.square",
+                                 text: "Drag the left edge of this panel to make the timer view wider — the countdown ring scales with it."),
+                                (icon: "arrow.up.backward.and.arrow.down.forward.square",
+                                 text: "Press ⌃⌘F to go full-screen for a distraction-free session."),
+                                (icon: "return",
+                                 text: "Press ↩ (Return) to advance to the next task without reaching for the mouse."),
+                                (icon: "pause.fill",
+                                 text: "Pause at any time — the clock freezes exactly where you left off."),
+                                (icon: "list.bullet",
+                                 text: "Click any task row on the left to jump directly to it."),
+                                (icon: "exclamationmark.circle",
+                                 text: "The ring turns red if you exceed the suggested time, with a +m:ss over-time counter."),
+                            ],
+                            isPresented: $showTip
+                        )
                     }
                     Spacer()
                     VStack(alignment: .trailing, spacing: 2) {

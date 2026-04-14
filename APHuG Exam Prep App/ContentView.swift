@@ -34,6 +34,9 @@ enum SidebarItem: String, Hashable, CaseIterable {
 struct ContentView: View {
     @State private var selectedSidebar: SidebarItem? = .studyPlan
 
+    // Onboarding
+    @State private var showOnboarding: Bool = !UserDefaults.standard.bool(forKey: "onboarding_completed_v1")
+
     // Study plan
     @State private var studyDays: [StudyDay] = StudyDay.loadFromCSV()
     @State private var selectedDay: StudyDay?
@@ -155,6 +158,19 @@ struct ContentView: View {
             }
         }
         .frame(minWidth: 1000, minHeight: 640)
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
+                Button {
+                    showOnboarding = true
+                } label: {
+                    Image(systemName: "questionmark.circle")
+                }
+                .help("Open walkthrough & tips")
+            }
+        }
+        .sheet(isPresented: $showOnboarding) {
+            OnboardingView(isPresented: $showOnboarding)
+        }
     }
 }
 

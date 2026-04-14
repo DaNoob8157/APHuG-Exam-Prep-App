@@ -84,6 +84,7 @@ struct WebBrowserPane: View {
     let accentColor: Color
     let homeURL: URL
     @ObservedObject var navigator: WebViewNavigator
+    @State private var showTip = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -111,6 +112,34 @@ struct WebBrowserPane: View {
                 }
 
                 Spacer()
+
+                // Tip popover button
+                Button {
+                    showTip.toggle()
+                } label: {
+                    Image(systemName: "lightbulb")
+                        .font(.caption)
+                }
+                .buttonStyle(.plain)
+                .help("Browser tips")
+                .popover(isPresented: $showTip, arrowEdge: .bottom) {
+                    TipPopover(
+                        title: "Browser Tips",
+                        tips: [
+                            (icon: "arrow.left.and.right.square",
+                             text: "Drag the divider on the left edge of this panel to make the browser wider or narrower."),
+                            (icon: "arrow.up.backward.and.arrow.down.forward.square",
+                             text: "Press ⌃⌘F or click the green traffic-light button to go full-screen."),
+                            (icon: "arrow.clockwise",
+                             text: "Tap ↻ if a page gets stuck loading."),
+                            (icon: "arrow.up.right.square",
+                             text: "Tap "Open in Browser" to view the site in Safari in a larger window."),
+                            (icon: "hand.pinch",
+                             text: "Use trackpad pinch-to-zoom inside the web view to adjust text size."),
+                        ],
+                        isPresented: $showTip
+                    )
+                }
 
                 Button {
                     NSWorkspace.shared.open(navigator.currentURL ?? homeURL)

@@ -29,7 +29,7 @@ struct StudyResource: Identifiable {
         var icon: String {
             switch self {
             case .collegeboard: return "building.columns.fill"
-            case .practice: return "checkmark.square.fill"
+            case .practice: return "pencil.and.scribble"
             case .youtube: return "play.rectangle.fill"
             case .unit1: return "map.fill"
             case .unit2: return "person.3.fill"
@@ -116,6 +116,30 @@ extension StudyResource {
             title: "Khan Academy — AP Human Geography",
             description: "Free lessons and exercises aligned to the AP Human Geography curriculum.",
             url: URL(string: "https://www.khanacademy.org/humanities/ap-human-geography")!,
+            category: .practice
+        ),
+        StudyResource(
+            title: "Knowt — AP Human Geography",
+            description: "Student-created and teacher-verified flashcard sets and practice tests for every unit.",
+            url: URL(string: "https://knowt.com/exams/AP/AP-Human-Geography")!,
+            category: .practice
+        ),
+        StudyResource(
+            title: "Lumisource — AP Human Geography",
+            description: "AI-powered study guides, key concept breakdowns, and unit summaries tailored for AP prep.",
+            url: URL(string: "https://lumisource.io/courses/ap-human-geography")!,
+            category: .practice
+        ),
+        StudyResource(
+            title: "Fiveable — AP Human Geography",
+            description: "Live review streams, cram guides, unit study guides, and FRQ walkthroughs from AP teachers.",
+            url: URL(string: "https://library.fiveable.me/ap-hug")!,
+            category: .practice
+        ),
+        StudyResource(
+            title: "Vocab.com — AP Human Geography",
+            description: "Adaptive vocabulary practice to master key geographic terms before the exam.",
+            url: URL(string: "https://www.vocabulary.com/lists/ap-human-geography/")!,
             category: .practice
         ),
 

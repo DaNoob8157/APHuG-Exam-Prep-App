@@ -13,34 +13,41 @@ struct TextbookView: View {
     @State private var totalPages: Int = 0
 
     var body: some View {
-        VStack(spacing: 0) {
-            if let url = Bundle.main.url(forResource: "AP Human Gepgraphy", withExtension: "pdf") {
+        if let url = Bundle.main.url(forResource: "AP Human Gepgraphy", withExtension: "pdf") {
+            ZStack(alignment: .bottom) {
                 PDFKitView(url: url, currentPage: $currentPage, totalPages: $totalPages)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-                // Bottom page info bar
-                HStack {
-                    Text("AP Human Geography Textbook")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    if totalPages > 0 {
+                // Floating page indicator
+                if totalPages > 0 {
+                    HStack(spacing: 6) {
+                        Image(systemName: "doc.text")
+                            .font(.caption2)
                         Text("Page \(currentPage + 1) of \(totalPages)")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                            .font(.caption2.monospacedDigit())
                     }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(.thinMaterial, in: Capsule())
+                    .padding(.bottom, 12)
                 }
-                .padding(.horizontal)
-                .padding(.vertical, 6)
-                .background(.bar)
-            } else {
-                ContentUnavailableView(
-                    "Textbook Not Found",
-                    systemImage: "book.closed",
-                    description: Text("The PDF textbook could not be loaded. Make sure \"AP Human Gepgraphy.pdf\" is included in the app bundle.")
-                )
             }
+            .ignoresSafeArea()
+        } else {
+            ContentUnavailableView(
+                "Textbook Not Found",
+                systemImage: "book.closed",
+                description: Text("The PDF could not be loaded. Make sure \"AP Human Gepgraphy.pdf\" is included in the app bundle.")
+            )
         }
+    }
+}
+
+/// PDFView subclass that re-fits the page to the view bounds on every layout pass.
+private class AutoFitPDFView: PDFView {
+    override func layout() {
+        super.layout()
+        guard document != nil else { return }
+        scaleFactor = scaleFactorForSizeToFit
     }
 }
 
@@ -49,11 +56,14 @@ struct PDFKitView: NSViewRepresentable {
     @Binding var currentPage: Int
     @Binding var totalPages: Int
 
-    func makeNSView(context: Context) -> PDFView {
-        let pdfView = PDFView()
-        pdfView.autoScales = true
-        pdfView.displayMode = .singlePageContinuous
+    func makeNSView(context: Context) -> AutoFitPDFView {
+        let pdfView = AutoFitPDFView()
+        // displayBox = .mediaBox ensures the full page area is used
+        pdfView.displayBox = .mediaBox
+        pdfView.displayMode = .singlePage
         pdfView.displayDirection = .vertical
+        // autoScales is false so our AutoFitPDFView.layout() drives scaling
+        pdfView.autoScales = false
 
         if let document = PDFDocument(url: url) {
             pdfView.document = document
@@ -62,7 +72,6 @@ struct PDFKitView: NSViewRepresentable {
             }
         }
 
-        // Observe page changes
         NotificationCenter.default.addObserver(
             context.coordinator,
             selector: #selector(Coordinator.pageChanged(_:)),
@@ -73,8 +82,9 @@ struct PDFKitView: NSViewRepresentable {
         return pdfView
     }
 
-    func updateNSView(_ nsView: PDFView, context: Context) {
-        // No dynamic updates needed
+    func updateNSView(_ nsView: AutoFitPDFView, context: Context) {
+        // Re-fit whenever SwiftUI lays us out
+        nsView.scaleFactor = nsView.scaleFactorForSizeToFit
     }
 
     func makeCoordinator() -> Coordinator {

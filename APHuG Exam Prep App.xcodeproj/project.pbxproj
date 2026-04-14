@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1587E6962F8F008200E2C7E5 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1587E6952F8F008200E2C7E5 /* AppIcon.icon */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		15145C1D2F8EEC92006AD184 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		15145C0F2F8EEC90006AD184 /* APHuG Exam Prep App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APHuG Exam Prep App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15145C1C2F8EEC92006AD184 /* APHuG Exam Prep AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APHuG Exam Prep AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15145C262F8EEC93006AD184 /* APHuG Exam Prep AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APHuG Exam Prep AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1587E6952F8F008200E2C7E5 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		15145C062F8EEC90006AD184 = {
 			isa = PBXGroup;
 			children = (
+				1587E6952F8F008200E2C7E5 /* AppIcon.icon */,
 				15145C112F8EEC90006AD184 /* APHuG Exam Prep App */,
 				15145C1F2F8EEC92006AD184 /* APHuG Exam Prep AppTests */,
 				15145C292F8EEC93006AD184 /* APHuG Exam Prep AppUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1587E6962F8F008200E2C7E5 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,24 +8,46 @@
 import SwiftUI
 
 enum SidebarItem: String, Hashable, CaseIterable {
-    case studyPlan = "Study Plan"
-    case resources = "Resources"
-    case textbook = "Textbook"
+    case studyPlan    = "Study Plan"
+    case session      = "Today's Session"
+    case practiceExams = "Practice Exams"
+    case cramMode     = "Cram Mode"
+    case music        = "Music"
+    case resources    = "Resources"
+    case textbook     = "Textbook"
 
     var icon: String {
         switch self {
-        case .studyPlan: return "calendar"
-        case .resources: return "link"
-        case .textbook: return "book.fill"
+        case .studyPlan:     return "calendar"
+        case .session:       return "timer"
+        case .practiceExams: return "doc.richtext.fill"
+        case .cramMode:      return "flame.fill"
+        case .music:         return "music.note"
+        case .resources:     return "link"
+        case .textbook:      return "book.fill"
         }
     }
 }
 
 struct ContentView: View {
     @State private var selectedSidebar: SidebarItem? = .studyPlan
+
+    // Study plan
     @State private var studyDays: [StudyDay] = StudyDay.loadFromCSV()
     @State private var selectedDay: StudyDay?
     @State private var refreshID = UUID()
+
+    // Session (clock-in timer)
+    @State private var allTasks: [StudyTask] = StudyTask.loadAll()
+    @StateObject private var sessionManager = SessionManager()
+
+    // Practice exams
+    @State private var selectedPracticeSource: PracticeExamSource? = nil
+    @StateObject private var practiceNavigator = WebViewNavigator()
+
+    // Music (Pandora)
+    @State private var musicLoadedURL: URL? = nil
+    @StateObject private var musicNavigator = WebViewNavigator()
 
     var body: some View {
         NavigationSplitView {
@@ -36,25 +58,42 @@ struct ContentView: View {
             .navigationTitle("APHuG Prep")
             .listStyle(.sidebar)
         } content: {
-            // Content area based on sidebar selection
             switch selectedSidebar {
             case .studyPlan:
                 StudyPlanView(studyDays: $studyDays, selectedDay: $selectedDay)
                     .id(refreshID)
+
+            case .session:
+                SessionView(manager: sessionManager, allTasks: allTasks)
+
+            case .practiceExams:
+                PracticeView(
+                    selectedSource: $selectedPracticeSource,
+                    navigator: practiceNavigator
+                )
+
+            case .cramMode:
+                CramView()
+
+            case .music:
+                MusicView(navigator: musicNavigator, loadedURL: $musicLoadedURL)
+
             case .resources:
                 ResourcesView()
+
             case .textbook:
                 TextbookView()
+
             case nil:
                 Text("Select an item from the sidebar")
                     .foregroundStyle(.secondary)
             }
         } detail: {
-            // Detail area (only relevant for study plan)
-            if selectedSidebar == .studyPlan {
+            switch selectedSidebar {
+
+            case .studyPlan:
                 if let day = selectedDay {
                     DayDetailView(day: day) { isCompleted in
-                        // Update completion state and refresh the list
                         if let index = studyDays.firstIndex(where: { $0.id == day.id }) {
                             studyDays[index].isCompleted = isCompleted
                         }
@@ -63,18 +102,53 @@ struct ContentView: View {
                 } else {
                     VStack(spacing: 12) {
                         Image(systemName: "hand.point.left.fill")
-                            .font(.largeTitle)
-                            .foregroundStyle(.secondary)
+                            .font(.largeTitle).foregroundStyle(.secondary)
                         Text("Select a study day to get started")
-                            .font(.title3)
-                            .foregroundStyle(.secondary)
+                            .font(.title3).foregroundStyle(.secondary)
                     }
                 }
-            } else {
+
+            case .session:
+                SessionDetailView(manager: sessionManager)
+
+            case .practiceExams:
+                if let source = selectedPracticeSource {
+                    WebBrowserPane(
+                        title: source.name,
+                        subtitle: source.attribution,
+                        accentColor: source.color,
+                        homeURL: source.url,
+                        navigator: practiceNavigator
+                    )
+                } else {
+                    PracticeWelcomeView { source in
+                        selectedPracticeSource = source
+                        practiceNavigator.load(source.url)
+                    }
+                }
+
+            case .music:
+                if musicLoadedURL != nil {
+                    WebBrowserPane(
+                        title: "Pandora",
+                        subtitle: "pandora.com",
+                        accentColor: .pink,
+                        homeURL: musicLoadedURL ?? URL(string: "https://www.pandora.com/")!,
+                        navigator: musicNavigator
+                    )
+                } else {
+                    MusicWelcomeView {
+                        let home = URL(string: "https://www.pandora.com/")!
+                        musicLoadedURL = home
+                        musicNavigator.load(home)
+                    }
+                }
+
+            default:
                 EmptyView()
             }
         }
-        .frame(minWidth: 900, minHeight: 600)
+        .frame(minWidth: 1000, minHeight: 640)
     }
 }
 

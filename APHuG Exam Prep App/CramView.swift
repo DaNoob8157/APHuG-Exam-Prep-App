@@ -102,7 +102,9 @@ struct DiagnosticQuizView: View {
                 Label("Start Quiz", systemImage: "play.fill")
                     .font(.title3.weight(.semibold)).padding(.horizontal, 36).padding(.vertical, 13)
             }
-            .buttonStyle(.borderedProminent).keyboardShortcut(.return)
+            .buttonStyle(.borderedProminent)
+            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
+            .keyboardShortcut(.return)
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -179,6 +181,7 @@ struct DiagnosticQuizView: View {
                             }
                         }
                         .buttonStyle(.borderedProminent)
+                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                         .keyboardShortcut(.return)
                     }
                 }
@@ -208,13 +211,13 @@ struct DiagnosticQuizView: View {
                         Text(weak.joined(separator: ", "))
                             .font(.subheadline).foregroundStyle(.orange)
                         Button("Review Weak Units →") { onComplete(weak) }
-                            .buttonStyle(.borderedProminent).tint(.orange)
+                            .buttonStyle(.borderedProminent).tint(.orange).background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                     }
                 } else {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Great job — no major weak spots!").font(.headline).foregroundStyle(.green)
                         Button("Review All Units →") { onComplete([]) }
-                            .buttonStyle(.bordered)
+                            .buttonStyle(.bordered).background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                     }
                 }
 
@@ -222,6 +225,7 @@ struct DiagnosticQuizView: View {
                     Label("Retake Quiz", systemImage: "arrow.clockwise")
                 }
                 .buttonStyle(.bordered)
+                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
             }
             .padding(24)
         }
@@ -417,12 +421,14 @@ struct RapidReviewView: View {
                             Label("Previous", systemImage: "chevron.left")
                         }
                         .buttonStyle(.bordered)
+                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                         .disabled(cardIndex == 0)
 
                         Button { flipCard() } label: {
                             Label(isFlipped ? "Show Term" : "Show Definition", systemImage: "arrow.left.arrow.right")
                         }
                         .buttonStyle(.bordered)
+                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
 
                         Button {
                             if cardIndex < cards.count - 1 { cardIndex += 1; resetFlip() }
@@ -430,6 +436,7 @@ struct RapidReviewView: View {
                             Label("Next", systemImage: "chevron.right")
                         }
                         .buttonStyle(.borderedProminent)
+                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                         .disabled(cardIndex == cards.count - 1)
                     }
 

@@ -219,6 +219,7 @@ struct OnboardingView: View {
                         withAnimation(.easeInOut(duration: 0.2)) { pageIndex -= 1 }
                     }
                     .buttonStyle(.bordered)
+                    .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                 }
 
                 // Next / Done
@@ -232,6 +233,7 @@ struct OnboardingView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(page.imageColor)
+                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                 .keyboardShortcut(isLast ? KeyboardShortcut(.return) : .init("\u{f702}", modifiers: []))   // ↩ on last page
             }
             .padding(.horizontal, 28)

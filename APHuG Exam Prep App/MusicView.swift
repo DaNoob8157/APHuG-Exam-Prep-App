@@ -166,6 +166,7 @@ struct MusicWelcomeView: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(.pink)
+            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
 
             Spacer()
         }

@@ -40,6 +40,7 @@ struct CustomPlanView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.blue)
+                    .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                 }
                 if !days.isEmpty {
                     ProgressView(value: Double(completedCount), total: Double(days.count))
@@ -75,6 +76,7 @@ struct CustomPlanView: View {
                         Label("Add Your First Day", systemImage: "plus")
                     }
                     .buttonStyle(.borderedProminent)
+                    .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                 }
                 Spacer()
             } else {
@@ -219,6 +221,7 @@ struct CustomDayDetailView: View {
                         .foregroundStyle(day.isCompleted ? .green : .blue)
                     }
                     .buttonStyle(.bordered)
+                    .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                 }
 
                 Divider()

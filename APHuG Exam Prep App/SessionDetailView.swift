@@ -95,6 +95,7 @@ struct SessionWelcomeView: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(.blue)
+            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
             .keyboardShortcut(.return)
 
             Spacer()
@@ -212,11 +213,13 @@ struct ActiveSessionView: View {
                                 Label("Pause", systemImage: "pause.fill")
                             }
                             .buttonStyle(.bordered)
+                            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                         } else {
                             Button { manager.resume() } label: {
                                 Label("Resume", systemImage: "play.fill")
                             }
                             .buttonStyle(.bordered)
+                            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                         }
 
                         Button { manager.completeAndNext() } label: {
@@ -227,6 +230,7 @@ struct ActiveSessionView: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(accent)
+                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                         .keyboardShortcut(.return)
                     }
 
@@ -296,7 +300,11 @@ struct SessionCompleteView: View {
                 Label("Reset Day", systemImage: "arrow.clockwise")
             }
             .buttonStyle(.bordered)
+            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
             Spacer()
+        }
+    }
+
     private func formatTime(_ s: Int) -> String {
         let h = s / 3600; let m = (s % 3600) / 60; let sec = s % 60
         return h > 0

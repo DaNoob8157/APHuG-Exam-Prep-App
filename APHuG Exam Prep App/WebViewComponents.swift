@@ -161,6 +161,7 @@ struct WebBrowserPane: View {
                         .font(.caption)
                 }
                 .buttonStyle(.bordered)
+                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                 .help("Open in Google Chrome")
             }
             .padding(.horizontal, 12)
@@ -180,10 +181,10 @@ struct WebBrowserPane: View {
                     Text("Check your internet connection, or open in Chrome.")
                         .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     HStack(spacing: 12) {
-                        Button("Try Again") { navigator.reload() }.buttonStyle(.bordered)
+                        Button("Try Again") { navigator.reload() }.buttonStyle(.bordered).background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                         Button("Open in Chrome") {
                             openInChrome(homeURL)
-                        }.buttonStyle(.borderedProminent).tint(accentColor)
+                        }.buttonStyle(.borderedProminent).tint(accentColor).background(.thinMaterial, in: RoundedRectangle(cornerRadius: 8))
                     }
                 }
                 .padding(40)

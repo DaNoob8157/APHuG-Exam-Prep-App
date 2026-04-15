@@ -121,7 +121,7 @@ struct DayDetailView: View {
 
                 // Content Focus card
                 PrepTaskCard(
-                    icon: "book.open.fill",
+                    icon: "book.closed",
                     title: "Today's Topics",
                     subtitle: "≈ 30 min — Read, watch, and review",
                     color: .blue,

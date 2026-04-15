@@ -153,11 +153,15 @@ struct MusicWelcomeView: View {
                     .padding(.horizontal, 40)
             }
 
-            Text("💡 Tip: Lo-Fi, Classical, and Ambient are great for memorising AP concepts.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 48)
+            HStack(alignment: .top, spacing: 6) {
+                Image(systemName: "lightbulb.fill")
+                    .foregroundStyle(.yellow)
+                Text("Tip: Lo-Fi, Classical, and Ambient are great for memorising AP concepts.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 48)
 
             Button {
                 onBrowse()

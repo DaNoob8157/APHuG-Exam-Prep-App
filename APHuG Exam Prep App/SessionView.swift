@@ -70,7 +70,7 @@ struct SessionView: View {
                             .foregroundStyle(.secondary)
                         Spacer()
                         if manager.isSessionComplete {
-                            Text("All done! 🎉")
+                            Label("All done!", systemImage: "checkmark.seal.fill")
                                 .font(.caption2)
                                 .foregroundStyle(.green)
                         } else {

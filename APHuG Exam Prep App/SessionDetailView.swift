@@ -178,7 +178,7 @@ struct ActiveSessionView: View {
                 if let task {
                     // Task-type badge
                     Label(
-                        task.taskType.isBreak ? "Break Time ☕" : task.taskType.shortName,
+                        task.taskType.isBreak ? "Break Time" : task.taskType.shortName,
                         systemImage: task.taskType.icon
                     )
                     .font(.subheadline.weight(.semibold))

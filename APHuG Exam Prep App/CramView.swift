@@ -37,9 +37,9 @@ struct CramView: View {
         VStack(spacing: 0) {
             // Tab bar
             Picker("", selection: $tab) {
-                Text("🎯 Diagnostic Quiz").tag(CramTab.quiz)
-                Text("🃏 Rapid Review").tag(CramTab.review)
-                Text("📋 Exam-Day Guide").tag(CramTab.guide)
+                Label("Diagnostic Quiz", systemImage: "target").tag(CramTab.quiz)
+                Label("Rapid Review", systemImage: "rectangle.stack.fill").tag(CramTab.review)
+                Label("Exam-Day Guide", systemImage: "checklist").tag(CramTab.guide)
             }
             .pickerStyle(.segmented)
             .padding(12)
@@ -498,10 +498,10 @@ struct ExamDayGuideView: View {
                 // Timeline
                 GuideSection(icon: "clock.fill", color: .blue, title: "Timing Strategy") {
                     VStack(alignment: .leading, spacing: 6) {
-                        tipRow("📝", "Section I — MC: 75 min for 60 questions (~75 sec/question)")
-                        tipRow("✏️", "Section II — FRQ: 75 min for 3 questions (~25 min each)")
-                        tipRow("⏭️", "Flag and skip hard MC questions; return at the end")
-                        tipRow("🕐", "Leave 5 min at the end of each section to review")
+                        tipRow("doc.text", "Section I — MC: 75 min for 60 questions (~75 sec/question)")
+                        tipRow("square.and.pencil", "Section II — FRQ: 75 min for 3 questions (~25 min each)")
+                        tipRow("forward.fill", "Flag and skip hard MC questions; return at the end")
+                        tipRow("clock", "Leave 5 min at the end of each section to review")
                     }
                 }
 
@@ -525,11 +525,11 @@ struct ExamDayGuideView: View {
                 // What to bring
                 GuideSection(icon: "bag.fill", color: .brown, title: "What to Bring") {
                     VStack(alignment: .leading, spacing: 5) {
-                        tipRow("✅", "Valid government/school photo ID")
-                        tipRow("✅", "Several #2 pencils + a black/dark-blue pen")
-                        tipRow("✅", "Water bottle and a light snack (for the break)")
-                        tipRow("✅", "Comfortable layers (exam rooms vary in temperature)")
-                        tipRow("🚫", "No calculator, phone, or smartwatch allowed")
+                        tipRow("checkmark.circle.fill", "Valid government/school photo ID")
+                        tipRow("checkmark.circle.fill", "Several #2 pencils + a black/dark-blue pen")
+                        tipRow("checkmark.circle.fill", "Water bottle and a light snack (for the break)")
+                        tipRow("checkmark.circle.fill", "Comfortable layers (exam rooms vary in temperature)")
+                        tipRow("nosign", "No calculator, phone, or smartwatch allowed")
                     }
                 }
 
@@ -558,11 +558,11 @@ struct ExamDayGuideView: View {
                 // Mindset
                 GuideSection(icon: "brain.head.profile", color: .green, title: "Mindset") {
                     VStack(alignment: .leading, spacing: 5) {
-                        tipRow("🧠", "Trust your prep — you know this material")
-                        tipRow("💨", "If you blank on a term, describe it in your own words")
-                        tipRow("📍", "Always use specific place names and vocabulary in FRQs")
-                        tipRow("😤", "Eliminate obviously wrong MC answers first")
-                        tipRow("🎯", "Every question is worth 1 point — no penalty for guessing")
+                        tipRow("brain.head.profile", "Trust your prep — you know this material")
+                        tipRow("wind", "If you blank on a term, describe it in your own words")
+                        tipRow("mappin.and.ellipse", "Always use specific place names and vocabulary in FRQs")
+                        tipRow("xmark.circle", "Eliminate obviously wrong MC answers first")
+                        tipRow("target", "Every question is worth 1 point — no penalty for guessing")
                     }
                 }
 
@@ -572,9 +572,11 @@ struct ExamDayGuideView: View {
         }
     }
 
-    private func tipRow(_ emoji: String, _ text: String) -> some View {
+    private func tipRow(_ systemImage: String, _ text: String) -> some View {
         HStack(alignment: .top, spacing: 8) {
-            Text(emoji).font(.body)
+            Image(systemName: systemImage)
+                .font(.body)
+                .foregroundStyle(.secondary)
             Text(text).font(.subheadline).foregroundStyle(.secondary)
         }
     }

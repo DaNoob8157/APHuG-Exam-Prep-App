@@ -66,6 +66,7 @@ struct ContentView: View {
             }
             .navigationTitle("APHuG Prep")
             .listStyle(.sidebar)
+            .background(.thinMaterial)
         } content: {
             switch selectedSidebar {
             case .studyPlan:
@@ -161,6 +162,7 @@ struct ContentView: View {
             }
         }
         .frame(minWidth: 1000, minHeight: 640)
+        .background(.ultraThinMaterial)
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button {

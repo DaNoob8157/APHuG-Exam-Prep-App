@@ -28,6 +28,7 @@ struct StudyPlanView: View {
                     .foregroundStyle(.secondary)
             }
             .padding()
+            .background(.thinMaterial)
 
             Divider()
 
@@ -37,6 +38,7 @@ struct StudyPlanView: View {
                     .tag(day)
                     .contentShape(Rectangle())
             }
+            .background(.thinMaterial)
         }
     }
 }

@@ -43,6 +43,7 @@ struct CramView: View {
             }
             .pickerStyle(.segmented)
             .padding(12)
+            .background(.thinMaterial)
 
             Divider()
 

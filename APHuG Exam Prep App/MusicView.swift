@@ -90,6 +90,7 @@ struct MusicView: View {
                 }
             }
             .listStyle(.sidebar)
+            .background(.thinMaterial)
         }
     }
 }
@@ -169,5 +170,6 @@ struct MusicWelcomeView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.ultraThinMaterial)
     }
 }

@@ -53,7 +53,7 @@ struct ResourcesView: View {
                 }
             }
             .padding(8)
-            .background(.bar)
+            .background(.thinMaterial)
 
             Divider()
 
@@ -72,6 +72,7 @@ struct ResourcesView: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
             }
+            .background(.ultraThinMaterial)
 
             Divider()
 

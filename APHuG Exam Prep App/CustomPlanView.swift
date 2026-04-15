@@ -52,6 +52,7 @@ struct CustomPlanView: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
+            .background(.thinMaterial)
 
             Divider()
 
@@ -101,6 +102,7 @@ struct CustomPlanView: View {
                         }
                 }
                 .listStyle(.sidebar)
+                .background(.thinMaterial)
             }
         }
         .sheet(isPresented: $showingAddSheet) {

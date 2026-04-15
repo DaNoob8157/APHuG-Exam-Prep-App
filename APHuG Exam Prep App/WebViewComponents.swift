@@ -165,7 +165,7 @@ struct WebBrowserPane: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(.bar)
+            .background(.thinMaterial)
 
             if navigator.isLoading {
                 ProgressView().progressViewStyle(.linear).frame(height: 2)
@@ -192,5 +192,6 @@ struct WebBrowserPane: View {
                 APHuGWebView(url: homeURL, navigator: navigator)
             }
         }
+        .background(.ultraThinMaterial)
     }
 }

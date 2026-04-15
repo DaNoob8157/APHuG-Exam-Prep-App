@@ -27,6 +27,7 @@ struct SessionDetailView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.ultraThinMaterial)
     }
 }
 
@@ -98,6 +99,7 @@ struct SessionWelcomeView: View {
 
             Spacer()
         }
+        .background(.ultraThinMaterial)
     }
 }
 
@@ -295,9 +297,6 @@ struct SessionCompleteView: View {
             }
             .buttonStyle(.bordered)
             Spacer()
-        }
-    }
-
     private func formatTime(_ s: Int) -> String {
         let h = s / 3600; let m = (s % 3600) / 60; let sec = s % 60
         return h > 0

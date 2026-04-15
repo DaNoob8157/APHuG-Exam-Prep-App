@@ -146,6 +146,7 @@ struct PracticeView: View {
                     .contentShape(Rectangle())
             }
             .listStyle(.sidebar)
+            .background(.thinMaterial)
             .onChange(of: selectedSource) { _, newVal in
                 if let src = newVal { navigator.load(src.url) }
             }
@@ -181,6 +182,7 @@ struct PracticeWelcomeView: View {
                 .padding(.bottom, 24)
             }
         }
+        .background(.ultraThinMaterial)
     }
 }
 

@@ -173,6 +173,7 @@ struct DayDetailView: View {
             }
             .padding(24)
         }
+        .background(.ultraThinMaterial)
     }
 }
 

@@ -47,7 +47,7 @@ private let onboardingPages: [OnboardingPage] = [
         systemImage: "calendar",
         imageColor: .indigo,
         title: "Study Plan & My Plan",
-        subtitle: ""Study Plan" shows the built-in 14-day schedule. "My Plan" is yours to customise.",
+        subtitle: "\"Study Plan\" shows the built-in 14-day schedule. \"My Plan\" is yours to customise.",
         tips: [
             .init(icon: "hand.point.right", text: "Click any day in the list — its full detail opens in the right panel."),
             .init(icon: "calendar.badge.plus", text: "In My Plan, tap the + button to add a custom day with your own tasks and time blocks."),
@@ -65,9 +65,9 @@ private let onboardingPages: [OnboardingPage] = [
         subtitle: "A live countdown timer that walks you through every task in your study day — with built-in breaks.",
         tips: [
             .init(icon: "chevron.left.chevron.right", text: "Use the ◀ Day 3 ▶ arrows to pick which day's schedule to run."),
-            .init(icon: "play.fill", text: "Tap "Clock In" to start. The circular ring counts down your task time."),
-            .init(icon: "pause.fill", text: "Tap "Pause" any time — the clock freezes. Tap "Resume" to continue."),
-            .init(icon: "checkmark.circle.fill", text: "Tap "Done & Next" (or press ↩) when you finish a task to advance automatically."),
+            .init(icon: "play.fill", text: "Tap \"Clock In\" to start. The circular ring counts down your task time."),
+            .init(icon: "pause.fill", text: "Tap \"Pause\" any time — the clock freezes. Tap \"Resume\" to continue."),
+            .init(icon: "checkmark.circle.fill", text: "Tap \"Done & Next\" (or press ↩) when you finish a task to advance automatically."),
             .init(icon: "exclamationmark.triangle", text: "The ring turns red if you go over time — it shows exactly how long you've run over."),
             .init(icon: "arrow.up.left.and.arrow.down.right", text: "Widen the detail pane by dragging its left edge — the countdown ring scales with it."),
         ]
@@ -84,7 +84,7 @@ private let onboardingPages: [OnboardingPage] = [
             .init(icon: "list.bullet", text: "Pick a source in the left list; the site loads in the right panel instantly."),
             .init(icon: "arrow.left", text: "Use the ← → toolbar buttons to navigate back and forward within the site."),
             .init(icon: "arrow.clockwise", text: "Tap the reload button (↻) if a page gets stuck."),
-            .init(icon: "arrow.up.right.square", text: "Tap "Open in Chrome" in the toolbar to pop any site into Chrome for a bigger view."),
+            .init(icon: "arrow.up.right.square", text: "Tap \"Open in Chrome\" in the toolbar to pop any site into Chrome for a bigger view."),
             .init(icon: "arrow.left.and.right.square", text: "Drag the divider between the source list and the browser to give the web view more space."),
             .init(icon: "tag", text: "Use the tag chips (MC, FRQ, Free, Official…) to filter sources by type."),
         ]
@@ -114,7 +114,7 @@ private let onboardingPages: [OnboardingPage] = [
         subtitle: "Pick a study station and Pandora loads right inside the app so you never break focus.",
         tips: [
             .init(icon: "music.note.list", text: "Choose any station from the list — Lo-Fi, Classical, Ambient, Jazz, and more."),
-            .init(icon: "arrow.up.right.square", text: "Tap "Open in Chrome" to move Pandora to a Chrome window if you prefer."),
+            .init(icon: "arrow.up.right.square", text: "Tap \"Open in Chrome\" to move Pandora to a Chrome window if you prefer."),
             .init(icon: "arrow.left.and.right.square", text: "Drag the left edge of the Pandora pane to make more room for the player."),
             .init(icon: "speaker.wave.2", text: "Pandora requires a free account — sign up or log in once and it remembers you."),
         ]
@@ -232,7 +232,7 @@ struct OnboardingView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(page.imageColor)
-                .keyboardShortcut(isLast ? .return : .init("\u{f702}", modifiers: []))   // ↩ on last page
+                .keyboardShortcut(isLast ? KeyboardShortcut(.return) : .init("\u{f702}", modifiers: []))   // ↩ on last page
             }
             .padding(.horizontal, 28)
             .padding(.vertical, 18)

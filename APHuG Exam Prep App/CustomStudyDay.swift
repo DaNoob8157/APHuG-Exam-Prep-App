@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Model
 
-struct CustomStudyDay: Identifiable, Codable {
+struct CustomStudyDay: Identifiable, Codable, Hashable {
     var id: UUID
     var title: String
     var unitFocus: String
@@ -37,7 +37,7 @@ struct CustomStudyDay: Identifiable, Codable {
     var totalMinutes: Int { tasks.reduce(0) { $0 + $1.durationMinutes } }
 }
 
-struct CustomTask: Identifiable, Codable {
+struct CustomTask: Identifiable, Codable, Hashable {
     var id: UUID
     var type: CustomTaskType
     var durationMinutes: Int
@@ -56,7 +56,7 @@ struct CustomTask: Identifiable, Codable {
     }
 }
 
-enum CustomTaskType: String, Codable, CaseIterable {
+enum CustomTaskType: String, Codable, CaseIterable, Hashable {
     case study   = "Study"
     case practice = "Practice MC"
     case frq     = "FRQ Work"

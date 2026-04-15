@@ -72,6 +72,9 @@ struct ContentView: View {
                 StudyPlanView(studyDays: $studyDays, selectedDay: $selectedDay)
                     .id(refreshID)
 
+            case .customPlan:
+                CustomPlanView(days: $customDays, selectedDay: $selectedCustomDay)
+
             case .session:
                 SessionView(manager: sessionManager, allTasks: allTasks)
 

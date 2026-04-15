@@ -63,7 +63,7 @@ struct CustomPlanView: View {
                         .foregroundStyle(.secondary)
                     Text("No custom days yet")
                         .font(.title3.weight(.medium))
-                    Text("Tap "Add Day" to build your own study schedule.\nIt lives alongside the default 14-day plan.")
+                    Text("Tap \"Add Day\" to build your own study schedule.\nIt lives alongside the default 14-day plan.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)

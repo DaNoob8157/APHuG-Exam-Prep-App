@@ -146,7 +146,7 @@ struct WebBrowserPane: View {
                             (icon: "arrow.clockwise",
                              text: "Tap ↻ if a page gets stuck loading."),
                             (icon: "arrow.up.right.square",
-                             text: "Tap "Open in Chrome" to view the site in Google Chrome in a larger window."),
+                             text: "Tap \"Open in Chrome\" to view the site in Google Chrome in a larger window."),
                             (icon: "hand.pinch",
                              text: "Use trackpad pinch-to-zoom inside the web view to adjust text size."),
                         ],

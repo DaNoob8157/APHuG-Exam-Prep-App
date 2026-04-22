@@ -1,7 +1,7 @@
 <div align="center">
 <img src="logo.png" alt="APHuG Exam Prep App Logo" width="200" />
 
-# APHuG Exam Prep App
+# APHuG Exam Prep App - a (mostly) Vibecoded App
 </div>
 
 A comprehensive macOS study companion app for AP Human Geography exam preparation. Integrated study planning, timed practice sessions, curated resources, and distraction-free music streaming—all in one place.

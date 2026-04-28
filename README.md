@@ -211,7 +211,7 @@ Then press `⌘R` to build and run.
 This project is a personal exam prep tool. For significant changes or issue reports, please document the modification thoroughly.
 
 ## License
-© 2026 APHuG Exam Prep App. Educational use only.
+MIT License, refer to `LICENSE`
 
 ## Contact & Support
 For questions or feedback about this app, consult the onboarding guide (?) or review the feature-specific tips embedded in each view.
